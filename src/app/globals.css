@@ -20,26 +20,3 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.movie-list {
-  display: grid;
-  grid-template-rows: repeat(5, 1fr); /* Creates 5 rows */
-  grid-auto-flow: column; /* Fills columns first, then rows */
-  gap: 20px;
-  padding: 20px;
-  width: 100%;
-}
-
-.movie-card {
-  width: 200px;
-  text-align: center;
-}
-
-.movie-card img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.movie-card h3 {
-  margin-top: 10px;
-  font-size: 1.1em;
-}
