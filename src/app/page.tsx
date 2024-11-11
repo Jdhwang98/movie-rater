@@ -15,7 +15,11 @@ export default async function Home() {
       <div className="max-w-screen-lg mx-auto flex flex-col justify-center h-full px-4">
         <h2 className="text-4xl sm:text-7xl font-bold text-white">Movie Rater</h2>
         <h5 className="text-gray-500 mt-2">Hello, Welcome to the movie rater website, what's on your watchlist...</h5>
-
+        {/* This is the navigation and routing section test sample */}
+        <nav>
+          <Link href="/about">about</Link>
+          <Link href="/movie/details">details</Link>
+        </nav>
         {/* Movie Genre*/}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
             {genre.map((g) => (
