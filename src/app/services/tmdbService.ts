@@ -1,7 +1,7 @@
 // services/tmdbService.ts
 import axios from "axios";
 
-const API_KEY = "0b208e977bf30350249251d05e194969"; 
+const API_KEY = "0b208e977bf30350249251d05e194969";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 export const getPopularMovies = async () => {
@@ -20,5 +20,5 @@ export const getPopularMovies = async () => {
   }
 };
 
-export const getImageUrl = (path: string, size = "w500") => 
+export const getImageUrl = (path: string, size = "w500") =>
   `https://image.tmdb.org/t/p/${size}${path}`;
