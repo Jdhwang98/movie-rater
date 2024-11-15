@@ -18,7 +18,7 @@ export default async function Home() {
         {/* Movie Genre Buttons */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
           {genre.map((g) => (
-            <Link key={g} href={`/${g}`}>
+            <Link key={g} href={`/genre/${g}`}>
               <button
                 className="bg-gray-900 text-white p-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 duration-300 w-full text-center"
               >
