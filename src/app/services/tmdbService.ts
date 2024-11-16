@@ -1,4 +1,3 @@
-// services/tmdbService.ts
 import axios from "axios";
 
 const API_KEY = "0b208e977bf30350249251d05e194969";

@@ -6,24 +6,21 @@ import { getMoviesByGenre, genreMap, getImageUrl, searchMovies } from "../../ser
 export default function GenrePage({ params }: { params: { genre: string } }) {
   const genre = params.genre;
   const [movies, setMovies] = useState([]);
-  const [originalMovies, setOriginalMovies] = useState([]); // Store the original genre movies
+  const [originalMovies, setOriginalMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
 
-  // Fetch movies based on genre or search query
   useEffect(() => {
     const loadMovies = async () => {
       setLoading(true);
 
       if (searchQuery.trim()) {
-        // Fetch search results
         setIsSearching(true);
-        const searchedMovies = await searchMovies(searchQuery, 1); // Always fetch first page of search results
-        setMovies(searchedMovies); // Replace the list with search results
+        const searchedMovies = await searchMovies(searchQuery, 1);
+        setMovies(searchedMovies);
       } else {
-        // Fetch movies by genre
         setIsSearching(false);
         const genreId = genreMap[genre.toLowerCase()];
         if (!genreId) {
@@ -34,7 +31,7 @@ export default function GenrePage({ params }: { params: { genre: string } }) {
         const newMovies = await getMoviesByGenre(genreId, page);
         if (page === 1) {
           setMovies(newMovies);
-          setOriginalMovies(newMovies); // Store original movies
+          setOriginalMovies(newMovies);
         } else {
           setMovies((prev) => [...prev, ...newMovies]);
         }
@@ -46,15 +43,13 @@ export default function GenrePage({ params }: { params: { genre: string } }) {
     loadMovies();
   }, [genre, page, searchQuery]);
 
-  // Reset movies to original list when search query is cleared
   useEffect(() => {
     if (!searchQuery.trim() && isSearching) {
-      setMovies(originalMovies); // Reset to original list
-      setPage(1); // Reset page to 1
+      setMovies(originalMovies);
+      setPage(1);
     }
   }, [searchQuery, isSearching, originalMovies]);
 
-  // Infinite scrolling logic
   useEffect(() => {
     const handleScroll = () => {
       if (
