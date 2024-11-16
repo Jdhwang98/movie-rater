@@ -43,7 +43,7 @@ export default function GenrePage({ params }: { params: { genre: string } }) {
 
   return (
     <div className="min-h-screen bg-black text-white p-6">
-      <h2 className="text-4xl sm:text-7xl font-bold text-white mt-8"><Link href="../">Movie Rater</Link></h2>
+      {/* <h2 className="text-4xl sm:text-7xl font-bold text-white mt-8"><Link href="../">Movie Rater</Link></h2> */}
       <h1 className="text-3xl font-bold capitalize mb-6">{genre} Movies</h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {movies.map((movie) => (
