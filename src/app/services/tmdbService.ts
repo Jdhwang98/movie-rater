@@ -51,3 +51,20 @@ export const getMoviesByGenre = async (genreId: string, page: number = 1) => {
     return [];
   }
 };
+
+export const searchMovies = async (query: string, page: number = 1) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/search/movie`, {
+      params: {
+        api_key: API_KEY,
+        language: "en-US",
+        query,
+        page,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error("Error searching movies:", error);
+    return [];
+  }
+};
