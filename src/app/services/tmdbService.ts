@@ -22,3 +22,32 @@ export const getPopularMovies = async () => {
 
 export const getImageUrl = (path: string, size = "w500") =>
   `https://image.tmdb.org/t/p/${size}${path}`;
+
+// sort by genre
+export const genreMap: { [key: string]: string } = {
+  action: "28",
+  comedy: "35",
+  drama: "18",
+  horror: "27",
+  romance: "10749",
+  "sci-fi": "878",
+  thriller: "53",
+  fantasy: "14",
+};
+
+export const getMoviesByGenre = async (genreId: string, page: number = 1) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/discover/movie`, {
+      params: {
+        api_key: API_KEY,
+        language: "en-US",
+        with_genres: genreId,
+        page,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching movies by genre:", error);
+    return [];
+  }
+};

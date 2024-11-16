@@ -18,7 +18,8 @@ export default async function Home() {
         {/* Movie Genre Buttons */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
           {genre.map((g) => (
-            <Link key={g} href={`/genre/${g}`}>
+            // adjusted for dynamic routing
+            <Link key={g} href={`/genres/${g.toLowerCase()}`}> 
               <button
                 className="bg-gray-900 text-white p-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 duration-300 w-full text-center"
               >
@@ -42,23 +43,3 @@ export default async function Home() {
     </div>
   );
 }
-
-
-  //Movie Card API logic
-  // export default async function Home() {
-  //   const movies = await getPopularMovies();
-  //   const genre = ["Action", "Comedy", "Drama", "Horror", "Romance", "Sci-Fi", "Thriller", "Fantasy"]
-    
-  //   return (
-  //     <div className="movie-list">
-  //       {movies.map((movie) => (
-  //         <MovieCard
-  //           key={movie.id}
-  //           title={movie.title}
-  //           image={getImageUrl(movie.poster_path)}
-  //         />
-  //       ))}
-  //     </div>
-  //   );
-  // }
-
