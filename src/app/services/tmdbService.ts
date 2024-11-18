@@ -97,3 +97,19 @@ export const getTopMoviesOfWeek = async () => {
     return [];
   }
 };
+
+export const getUpcomingMovies = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/upcoming`, {
+      params: {
+        api_key: API_KEY,
+        language: "en-US",
+        page: 1,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching Upcoming movies:", error);
+    return [];
+  }
+};
