@@ -67,3 +67,33 @@ export const searchMovies = async (query: string, page: number = 1) => {
     return [];
   }
 };
+
+export const getMoviesInTheaters = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/now_playing`, {
+      params: {
+        api_key: API_KEY,
+        language: "en-US",
+        page: 1,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching movies in theaters:", error);
+    return [];
+  }
+};
+
+export const getTopMoviesOfWeek = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/trending/movie/week`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+    return response.data.results.slice(0, 10);
+  } catch (error) {
+    console.error("Error fetching top movies of the week:", error);
+    return [];
+  }
+};
