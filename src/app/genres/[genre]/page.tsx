@@ -2,11 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { getMoviesByGenre, genreMap, getImageUrl, searchMovies } from "../../services/tmdbService";
+import Image from 'next/image';
+
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+}
 
 export default function GenrePage({ params }: { params: { genre: string } }) {
   const genre = params.genre;
-  const [movies, setMovies] = useState([]);
-  const [originalMovies, setOriginalMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [originalMovies, setOriginalMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
@@ -81,10 +88,12 @@ export default function GenrePage({ params }: { params: { genre: string } }) {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {movies.map((movie) => (
           <div key={movie.id} className="bg-gray-800 p-4 rounded-lg shadow-md">
-            <img
+            <Image
               src={getImageUrl(movie.poster_path)}
               alt={movie.title}
               className="rounded-md mb-4"
+              width={300}
+              height={300}
             />
             <h3 className="text-lg font-semibold">{movie.title}</h3>
           </div>
