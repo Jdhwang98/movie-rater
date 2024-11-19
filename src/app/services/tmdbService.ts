@@ -113,3 +113,13 @@ export const getUpcomingMovies = async () => {
     return [];
   }
 };
+export const getMovieDetailsById  = async (id: number) => {
+  try{
+    const response = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`);
+    const data =  await response.json();
+    return data;
+  }catch(error){
+    console.error("Error fetching movie:", error);
+    return [];
+  }
+};
