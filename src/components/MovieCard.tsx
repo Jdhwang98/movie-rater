@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./MovieCard.module.css";
+import Image from 'next/image';
 
 
 interface MovieCardProps {
@@ -9,9 +10,9 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ title, image }) => (
   <div className="{styles.movieCard}">
-    <img src={image} alt={title} className={styles.movieImage}/>
+    <Image src={image} alt={title} className={styles.movieImage} width={200} height={300} />
     <h3 className={styles.movieTitle}>{title}</h3>
-</div>
+  </div>
 );
 
 export default MovieCard;
