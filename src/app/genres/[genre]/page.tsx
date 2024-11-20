@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { getMoviesByGenre, genreMap, getImageUrl, searchMovies } from "../../services/tmdbService";
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Movie {
   id: number;
@@ -88,14 +89,13 @@ export default function GenrePage({ params }: { params: { genre: string } }) {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {movies.map((movie) => (
           <div key={movie.id} className="bg-gray-800 p-4 rounded-lg shadow-md">
-            <Image
-              src={getImageUrl(movie.poster_path)}
-              alt={movie.title}
-              className="rounded-md mb-4"
-              width={300}
-              height={300}
-            />
-            <h3 className="text-lg font-semibold">{movie.title}</h3>
+            {/* Wrap each movie card with a Link to the movie page */}
+            <Link href={`/movies/${movie.id}`}>
+              <div className="shadow-md hover:shadow-lg transform hover:scale-105 duration-300">
+                <Image src={getImageUrl(movie.poster_path)} alt={movie.title} className="rounded-md mb-4" width={300} height={300} />
+              </div>
+              <h3 className="text-lg font-semibold">{movie.title}</h3>
+            </Link>
           </div>
         ))}
       </div>

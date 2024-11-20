@@ -48,14 +48,14 @@ export default async function Home() {
         <h3 className="text-2xl text-white font-bold mt-8">Top 20 Movies</h3>
         <div className="movie-scroll mt-4 overflow-x-scroll whitespace-nowrap scrollbar-hide">
           {popularMovies.slice(0, 20).map((movie: Movie) => (
-            <Link href={`/movies/${movie.id}`}>
-              <button
-            className="shadow-md hover:shadow-lg transform hover:scale-105 duration-300">
-            <div key={movie.id} className="inline-block w-48 mr-4">
-              <MovieCard title={movie.title} image={getImageUrl(movie.poster_path)} />
-            </div>
-            </button>
+            <Link href={`/movies/${movie.id}`} key={movie.id}>
+              <button className="shadow-md hover:shadow-lg transform hover:scale-105 duration-300">
+                <div key={movie.id} className="inline-block w-48 mr-4">
+                  <MovieCard title={movie.title} image={getImageUrl(movie.poster_path)} />
+                </div>
+              </button>
             </Link>
+
           ))}
         </div>
 
@@ -63,14 +63,14 @@ export default async function Home() {
         <h3 className="text-2xl text-white font-bold mt-8">In Theaters</h3>
         <div className="movie-scroll mt-4 overflow-x-scroll whitespace-nowrap scrollbar-hide">
           {inTheaters.map((movie: Movie) => (
-            <Link href={`/movies/${movie.id}`}>
-              <button
-            className="shadow-md hover:shadow-lg transform hover:scale-105 duration-300">
-            <div key={movie.id} className="inline-block w-48 mr-4">
-              <MovieCard title={movie.title} image={getImageUrl(movie.poster_path)} />
-            </div>
-            </button>
+            <Link href={`/movies/${movie.id}`} key={movie.id}>
+              <button className="shadow-md hover:shadow-lg transform hover:scale-105 duration-300">
+                <div key={movie.id} className="inline-block w-48 mr-4">
+                  <MovieCard title={movie.title} image={getImageUrl(movie.poster_path)} />
+                </div>
+              </button>
             </Link>
+
           ))}
         </div>
 
@@ -78,14 +78,14 @@ export default async function Home() {
         <h3 className="text-2xl text-white font-bold mt-8">Top 10 for the Week</h3>
         <div className="movie-scroll mt-4 overflow-x-scroll whitespace-nowrap scrollbar-hide">
           {topOfWeek.map((movie: Movie) => (
-            <Link href={`/movies/${movie.id}`}>
-              <button
-            className="shadow-md hover:shadow-lg transform hover:scale-105 duration-300">
-            <div key={movie.id} className="inline-block w-48 mr-4">
-              <MovieCard title={movie.title} image={getImageUrl(movie.poster_path)} />
-            </div>
-            </button>
+            <Link href={`/movies/${movie.id}`} key={movie.id}>
+              <button className="shadow-md hover:shadow-lg transform hover:scale-105 duration-300">
+                <div key={movie.id} className="inline-block w-48 mr-4">
+                  <MovieCard title={movie.title} image={getImageUrl(movie.poster_path)} />
+                </div>
+              </button>
             </Link>
+
           ))}
         </div>
 
@@ -93,14 +93,10 @@ export default async function Home() {
         <h3 className="text-2xl text-white font-bold mt-8">Coming Soon</h3>
         <div className="movie-scroll mt-4 overflow-x-scroll whitespace-nowrap scrollbar-hide">
           {upcoming.map((movie: Movie) => (
-             <Link href={`/movies/${movie.id}`}>
-             <button
-           className="shadow-md hover:shadow-lg transform hover:scale-105 duration-300">
             <div key={movie.id} className="inline-block w-48 mr-4">
               <MovieCard title={movie.title} image={getImageUrl(movie.poster_path)} />
             </div>
-            </button>
-            </Link>
+
           ))}
         </div>
       </div>
