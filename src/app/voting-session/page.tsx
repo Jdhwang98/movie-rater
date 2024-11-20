@@ -19,6 +19,7 @@ export default function VotingSessionPage() {
 
   const router = useRouter();
 
+  // Session will only work once web app is hosted to server
   // Generate a unique session ID
   useEffect(() => {
     const generateSessionId = () => {
