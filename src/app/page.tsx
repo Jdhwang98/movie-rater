@@ -31,15 +31,6 @@ export default async function Home() {
         <h2 className="text-4xl sm:text-7xl font-bold text-white mt-8">Movie Rater</h2>
         <h5 className="text-gray-500 mt-2">{"Hello, Welcome to the movie rater website, what's on your watchlist..."}</h5>
 
-        {/* Voting session button */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-          <Link href="/voting-session">
-            <button  className="bg-blue-900 text-white p-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 duration-300 w-full text-center">
-              Start a Voting Session
-            </button>
-          </Link>
-        </div>
-
         {/* Movie Genre Buttons */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
           {genre.map((g) => (
