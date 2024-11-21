@@ -1,0 +1,21 @@
+{
+    "Name":"John Doe",
+    "Description":"Hey, I'm someone who thrives on the thrill of immersive storytelling, especially when it comes to anime and horror movies. Anime has always been my escape—whether it's the beautifully animated worlds or the depth of the characters, I love how it blends action, emotion, and creativity. From the classics like Naruto and Attack on Titan to hidden gems, I’m always seeking something new to get hooked on.But when the lights go down and the eerie music starts, there’s nothing like the spine-chilling excitement of a scary movie. I’m all about the suspense, the jump scares, and those unsettling moments that stick with you long after the credits roll. Whether it's psychological thrillers, supernatural horror, or gory slashers, I love the way these films keep me on the edge of my seat.The contrast between the imaginative worlds of anime and the terrifying, suspenseful atmosphere of horror films is what keeps me coming back for more. I’m always on the lookout for a series or movie that can give me that adrenaline rush, whether it’s through intense battles or creepy, atmospheric moments. Watching anime and horror movies isn’t just a hobby for me—it’s a passion that fuels my need for both creativity and excitement!",
+    "Lists":[
+                {"id":"1","name":"Must Watch","Movie_ids":["One Piece","Naruto","Dragon Ball Super"]},
+                {"id":"2","name":"Next Up to Watch","Movie_ids":["Bleach","Dune","The Wild Robot","Smile 2"]}
+    ]
+    ,
+    "Groups":[
+        {"id":"1", "group_name":"Anime Enjoyers", "num_members":"10","img_address":"https://i.redd.it/r31x3xs49jhb1.jpg"},
+        {"id":"2", "group_name":"Scary Movie Enjoyers", "num_members":"12","img_address":"https://www.usatoday.com/gcdn/presto/2023/03/11/USAT/afbf7a84-0242-4b54-bcde-f40f4ecebc20-scr602669k.jpg?width=1733&height=1156&fit=crop&format=pjpg&auto=webp"},
+        {"id":"3", "group_name":"The Homies", "num_members":"2","img_address":"https://comicbook.com/wp-content/uploads/sites/4/2024/10/Regular-Show.jpg?w=1984"}
+
+    ],
+    "Ratings":[
+        {"name": "Spiderman (2002)", "rating":"8", "overall_rating":"90"},
+        {"name": "Venom: The Last Dance", "rating":"2", "overall_rating":"50"},
+        {"name": "Fortnite the Movie", "rating":"100", "overall_rating":"100"}
+        
+    ]
+}
