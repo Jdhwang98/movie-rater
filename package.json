@@ -10,7 +10,12 @@
   },
   "dependencies": {
     "@types/tailwindcss": "^3.0.11",
-    "axios": "^1.7.7",
+    "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.0",
     "next": "^15.0.3",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
