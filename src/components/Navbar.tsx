@@ -18,6 +18,7 @@ const Navbar = () => {
           <li><Link href="/voting-session" className="text-white hover:text-blue-400">Voting Session</Link></li>
           <li><Link href="/contact" className="text-white hover:text-blue-400">Contact</Link></li>
           <li><Link href="/profile" className="text-white hover:text-blue-400">Profile</Link></li>
+          <li><Link href="/"><button className=" gap-y-6 w-full bg-gray-600 text-white p-2 rounded font-bold hover:bg-red-700">Logout</button></Link></li>
         </ul>
       </div>
     </nav>

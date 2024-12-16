@@ -19,8 +19,8 @@ export default function Register() {
 
 
     return (
-        <div className="min-h-screen flex justify-center items-center bg-gray-800 text-white">
-            <div className="p-6 rounded-lg bg-gray-900 w-96">
+        <div className="w-full bg-gradient-to-b from-black via-black to-gray-800 min-h-screen flex flex-col justify-center items-center">
+            <div className="text-center max-w-md mx-auto px-4 py-8 bg-gray-900 bg-opacity-75 rounded-lg shadow-lg">
                 <form onSubmit={handleSubmit}>
                     <h2 className="text-3xl font-bold mb-6">Register</h2>
                     <input
