@@ -14,7 +14,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <ul className="flex space-x-4">
-          <li><Link href="/" className="text-white hover:text-blue-400">Home</Link></li>
+          <li><Link href="/home" className="text-white hover:text-blue-400">Home</Link></li>
           <li><Link href="/voting-session" className="text-white hover:text-blue-400">Voting Session</Link></li>
           <li><Link href="/contact" className="text-white hover:text-blue-400">Contact</Link></li>
           <li><Link href="/profile" className="text-white hover:text-blue-400">Profile</Link></li>
