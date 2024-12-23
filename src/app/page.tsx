@@ -15,8 +15,14 @@ export default function LoginPage() {
         </Link>
 
         <Link href={`/register`}>
-          <button className="bg-gray-700 text-white p-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 duration-300 w-full text-center">
+          <button className="bg-gray-700 text-white p-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 duration-300 w-full text-center mb-4">
             REGISTER
+          </button>
+        </Link>
+
+        <Link href={`/home`}>
+          <button className="bg-gray-700 text-white p-4 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 duration-300 w-full text-center">
+            Continue Without Registering
           </button>
         </Link>
       </div>
