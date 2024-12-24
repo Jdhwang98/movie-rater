@@ -1,16 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import axios from "axios";
-import { getMovieDetailsById, getImageUrl } from "../../services/tmdbService";
+import { getMovieDetailsById, getImageUrl, getCastMembers } from "../../services/tmdbService";
 import Image from 'next/image';
 
 export default function MoviePage({ params }) {
+    // const unwrappedParams = use(params);
     const [movie, setMovie] = useState(null);
     const [rating, setRating] = useState(null);
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     const [userName, setUserName] = useState("");
+    const [cast, setCast] = useState([]);
 
     useEffect(() => {
         const fetchMovie = async () => {
@@ -23,8 +25,14 @@ export default function MoviePage({ params }) {
             setComments(response.data);
         };
 
+        const fetchCast = async () => {
+            const castData = await getCastMembers(params.movie);
+            setCast(castData.cast.slice(0, 15));
+        };
+
         fetchMovie();
         fetchComments();
+        fetchCast();
     }, [params.movie]);
 
     const handleRatingClick = (star) => {
@@ -59,6 +67,32 @@ export default function MoviePage({ params }) {
                     <h1 className="text-5xl font-bold mb-4">{movie.title}</h1>
                     <p className="text-2xl text-gray-300 mt-2">Year: {releaseYear} | {genres}</p>
                     <p className="text-2xl text-yellow-400 mt-1">IMDb Rating: {movie.vote_average}</p>
+                </div>
+            </div>
+
+            {/* Movie Overview */}
+            <div className="mt-8">
+                <h2 className="text-3xl font-semibold mb-4">Overview</h2>
+                <p className="text-lg text-gray-300">{movie.overview}</p>
+            </div>
+
+            {/* Cast Members */}
+            <div className="mt-8">
+                <h2 className="text-3xl font-semibold mb-4">Top Cast Members</h2>
+                <div className="flex overflow-x-auto space-x-4 py-2">
+                    {cast.map((member, index) => (
+                        <div key={index} className="flex-none w-40 flex flex-col items-center text-center">
+                            <Image
+                                src={getImageUrl(member.profile_path, "w200")}
+                                alt={member.name}
+                                className="rounded-lg"
+                                width={100}
+                                height={150}
+                            />
+                            <p className="text-lg font-semibold text-gray-200 mt-2">{member.name}</p>
+                            <p className="text-sm text-gray-400">{member.character}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
 
