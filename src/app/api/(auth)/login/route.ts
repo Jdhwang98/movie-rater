@@ -1,10 +1,10 @@
-import User from "../../../lib/modals/User";
-import connectToDatabase from "../../../lib/db";
+import User from "../../../../lib/modals/User";
+import connectToDatabase from "../../../../lib/db";
 import bcrypt from 'bcrypt';
 import { NextResponse } from "next/server";
 
 //post method because we are passing data
-export async function POST(request) {
+export async function POST(request: Request) {
     try {
         connectToDatabase(); //connect to database
         const { email, password } = await request.json() //extract input fields from request
@@ -20,7 +20,8 @@ export async function POST(request) {
         }
 
         return NextResponse.json({ message: "success", status: 201 })
-    } catch (err) {
+    } catch (err: any) {
         return NextResponse.json({ error: err.message, status: 500 })
     }
-}
+};
+
