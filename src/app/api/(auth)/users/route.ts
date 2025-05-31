@@ -63,3 +63,44 @@ export const PATCH = async (request: Request) => {
          });
     }
 }
+
+export const DELETE = async (request: Request) => {
+    try {
+        const { searchParams } = new URL(request.url);
+        const userId = searchParams.get("userId");
+        // check if user ID exists
+        if (!userId) {
+            return new NextResponse(
+                JSON.stringify({ message: "ID or new username not found" }),
+            );
+        }
+        // check if user ID is valid user
+        if (!Types.ObjectId.isValid(userId)) {
+            return new NextResponse(JSON.stringify( {message: "Invalid User id" }), {
+                status: 400,
+            });
+        }
+        await connectToDatabase();
+        
+        const deleteUser = await User.findByIdAndDelete(
+            new Types.ObjectId(userId)
+        );
+        // check if able to check user ID and delete is possible
+        if (!deleteUser) {
+            return new NextResponse(
+                JSON.stringify({ message: "User not found in the database" }),
+                {status : 400 }
+            );
+        }
+        //success: user ID was found connected to database and deleted user!
+        return new NextResponse(
+            JSON.stringify({ message: "User is deleted", user: deleteUser }),
+            { status: 200 }
+        );
+        // error: could not delete the user
+    } catch (error: any ){
+        return new NextResponse("Error in deleting user" + error.message, {
+            status: 500,
+        });
+    }
+};
