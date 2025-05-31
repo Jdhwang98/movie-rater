@@ -1,5 +1,5 @@
-import connectToDatabase from "../../../lib/db";
-import Comment from "../../models/Comment";
+import connectToDatabase from "../../../../lib/db";
+import Comment from "../../../../lib/modals/Comment";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {

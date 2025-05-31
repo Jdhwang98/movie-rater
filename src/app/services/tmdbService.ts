@@ -125,6 +125,19 @@ export const getMovieDetailsById = async (id: number) => {
   }
 };
 
+
+//  return user profile name - john
+// export const getProfileInformation = async () => {
+//   try {
+//     const response = await fetch(`/api/profile/${name}`);
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching user profile: ", error);
+//     return [];
+//   }
+// };
+
 export const getCastMembers = async (id: number) => {
   try {
     const response = await fetch(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`);
