@@ -1,4 +1,4 @@
-import User from "../../models/User";
+import User from "@/lib/modals/User";
 import connectToDatabase from "../../../../lib/db";
 import bcrypt from 'bcrypt';
 import { NextResponse } from "next/server";
