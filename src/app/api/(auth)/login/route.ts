@@ -12,6 +12,7 @@ export async function POST(request: Request) {
         connectToDatabase(); //connect to database
         const { email, password } = await request.json() //extract input fields from request
         const userExists = await User.findOne({ email }) //find user based on email
+        console.log(JSON.stringify(userExists));
         if (!userExists) { //if user doesnt exist
             return NextResponse.json({ error: "User doesnt exist" })
         }
@@ -24,7 +25,6 @@ export async function POST(request: Request) {
         const sessionId = randomUUID();
         console.log("HELLO " + sessionId);
         const response = NextResponse.json({ message: "success" }, { status: 201 })
-
         response.cookies.set('sessionid', sessionId, {
             httpOnly: true,
             secure: false,
@@ -32,7 +32,8 @@ export async function POST(request: Request) {
             path: '/',
             maxAge: 60 * 60 * 24 // 1 day
         })
-        return response;
+        
+        return response
     } catch (err: any) {
         return NextResponse.json({ error: err.message, status: 500 })
     }
