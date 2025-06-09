@@ -14,7 +14,7 @@ export default function Login() {
         e.preventDefault()
         const response = await axios.post('/api/login', { email, password })
         if (response.data.message == "success") {
-            router.push('/home')
+            router.push('/home') // redirects user to the home page
         }
     }
 

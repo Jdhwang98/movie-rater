@@ -15,10 +15,11 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.17.0",
     "mongoose": "^8.9.0",
-    "next": "^15.0.3",
-    "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
