@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 import User from "@/lib/modals/User";
-=======
-import User from "../../../../lib/modals/User";
->>>>>>> Stashed changes
 import connectToDatabase from "../../../../lib/db";
 import bcrypt from 'bcrypt';
 import { NextResponse } from "next/server";

@@ -1,4 +1,4 @@
-import User from "../../../../lib/modals/User";
+import User from "@/lib/modals/User";
 import connectToDatabase from "../../../../lib/db";
 import bcrypt from 'bcrypt';
 import { NextResponse } from "next/server";
@@ -23,6 +23,9 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Wrong password", status: 404 })
         }
         const sessionId = randomUUID();
+        userExists.sessionid = sessionId;
+        console.log(userExists);
+        await userExists.save();
         console.log("HELLO " + sessionId);
         const response = NextResponse.json({ message: "success" }, { status: 201 })
         response.cookies.set('sessionid', sessionId, {
