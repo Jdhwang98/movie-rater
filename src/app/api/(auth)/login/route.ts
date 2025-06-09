@@ -1,7 +1,10 @@
-import User from "../../../../lib/modals/User";
+import User from "@/lib/modals/User";
 import connectToDatabase from "../../../../lib/db";
 import bcrypt from 'bcrypt';
 import { NextResponse } from "next/server";
+import { randomUUID } from 'crypto';
+import { cookies } from 'next/headers';
+
 
 //post method because we are passing data
 export async function POST(request: Request) {
@@ -9,6 +12,7 @@ export async function POST(request: Request) {
         connectToDatabase(); //connect to database
         const { email, password } = await request.json() //extract input fields from request
         const userExists = await User.findOne({ email }) //find user based on email
+        console.log(JSON.stringify(userExists));
         if (!userExists) { //if user doesnt exist
             return NextResponse.json({ error: "User doesnt exist" })
         }
@@ -18,8 +22,21 @@ export async function POST(request: Request) {
         if (!checkPassword) { //if both passwords dont match
             return NextResponse.json({ error: "Wrong password", status: 404 })
         }
-
-        return NextResponse.json({ message: "success", status: 201 })
+        const sessionId = randomUUID();
+        userExists.sessionid = sessionId;
+        console.log(userExists);
+        await userExists.save();
+        console.log("HELLO " + sessionId);
+        const response = NextResponse.json({ message: "success" }, { status: 201 })
+        response.cookies.set('sessionid', sessionId, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'lax',
+            path: '/',
+            maxAge: 60 * 60 * 24 // 1 day
+        })
+        
+        return response
     } catch (err: any) {
         return NextResponse.json({ error: err.message, status: 500 })
     }
