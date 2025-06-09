@@ -6,7 +6,7 @@ import { getMovieDetailsById, getImageUrl, getCastMembers } from "../../services
 import Image from 'next/image';
 
 export default function MoviePage({ params }) {
-    // const unwrappedParams = use(params);
+    const unwrappedParams = use(params);
     const [movie, setMovie] = useState(null);
     const [rating, setRating] = useState(null);
     const [comment, setComment] = useState("");
@@ -16,24 +16,24 @@ export default function MoviePage({ params }) {
 
     useEffect(() => {
         const fetchMovie = async () => {
-            const movieData = await getMovieDetailsById(params.movie);
+            const movieData = await getMovieDetailsById(unwrappedParams.movie);
             setMovie(movieData);
         };
 
         const fetchComments = async () => {
-            const response = await axios.get(`/api/comment?movieId=${params.movie}`);
+            const response = await axios.get(`/api/comment?movieId=${unwrappedParams.movie}`);
             setComments(response.data);
         };
 
         const fetchCast = async () => {
-            const castData = await getCastMembers(params.movie);
+            const castData = await getCastMembers(unwrappedParams.movie);
             setCast(castData.cast.slice(0, 15));
         };
 
         fetchMovie();
         fetchComments();
         fetchCast();
-    }, [params.movie]);
+    }, [unwrappedParams.movie]);
 
     const handleRatingClick = (star) => {
         setRating(star);
@@ -41,10 +41,10 @@ export default function MoviePage({ params }) {
 
     const handleCommentSubmit = async () => {
         if (comment.trim() && userName.trim()) {
-            const newComment = { movieId: params.movie, user: userName, comment };
+            const newComment = { movieId: unwrappedParams.movie, user: userName, comment };
             await axios.post("/api/comment", newComment);
             setComment("");
-            const response = await axios.get(`/api/comment?movieId=${params.movie}`); // Refresh comments
+            const response = await axios.get(`/api/comment?movieId=${unwrappedParams.movie}`); // Refresh comments
             setComments(response.data);
         }
     };

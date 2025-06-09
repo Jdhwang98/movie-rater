@@ -3,7 +3,7 @@ import User from "@/lib/modals/User";
 import { NextResponse } from "next/server";
 import {Types } from "mongoose";
 
-const ObjectId = require("mongoose").Types.ObjectId
+
 import { cookies } from 'next/headers';
 
 // Simply checks if the user is logged in or not

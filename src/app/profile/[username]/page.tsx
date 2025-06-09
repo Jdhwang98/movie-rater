@@ -66,26 +66,19 @@ import Link from 'next/link'
 //     )
 // }
 
-export default function Profile({
-    params,
-}: {
-    params : {
-        userId : string;
-        userName : string;
-    };
-}) {
+export default function Profile(){
+    const userName = "jose"
+    // const [userName, setUserName] = useState('');
 
-    const [userName, setUserName] = useState('');
+    // useEffect(() => {
+    //     const fetchUserName = async () => {
+    //         const res = await fetch(`/api/profile/${userName}`);
+    //         const data = await res.json();
+    //         setUserName(data.name)
+    //     };
 
-    useEffect(() => {
-        const fetchUserName = async () => {
-            const res = await fetch(`/api/profile/${params.userName}`);
-            const data = await res.json();
-            setUserName(data.name)
-        };
-
-        fetchUserName();
-    }, [params.userId]);
+    //     fetchUserName();
+    // }, [params.userId]);
 
     return (
         <h1>

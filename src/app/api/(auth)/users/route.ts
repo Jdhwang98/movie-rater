@@ -3,7 +3,7 @@ import User from "@/lib/modals/User";
 import { NextResponse } from "next/server";
 import {Types } from "mongoose";
 
-const ObjectId = require("mongoose").Types.ObjectId
+const ObjectId = Types.ObjectId;
 
 
 
