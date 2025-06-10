@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { getMoviesByGenre, genreMap, getImageUrl, searchMovies } from "../../services/tmdbService";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,7 +11,8 @@ interface Movie {
   poster_path: string;
 }
 
-export default function GenrePage({ params }: { params: { genre: string } }) {
+export default function GenrePage(paramsPromise: Promise<{ params: { genre: string } }>) {
+  const { params } = use(paramsPromise);  
   const genre = params.genre;
   const [movies, setMovies] = useState<Movie[]>([]);
   const [originalMovies, setOriginalMovies] = useState<Movie[]>([]);

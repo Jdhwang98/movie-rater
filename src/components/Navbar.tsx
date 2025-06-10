@@ -1,7 +1,21 @@
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 
 const Navbar = () => {
+
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await fetch('/api/logout', {
+      method: 'POST',
+      credentials: 'include',
+    });
+    router.push('/');
+  };
+
   return (
     // Logo and Title 
     <nav className="bg-gray-800 p-4">
@@ -18,7 +32,7 @@ const Navbar = () => {
           <li><Link href="/voting-session" className="text-white hover:text-blue-400">Voting Session</Link></li>
           <li><Link href="/contact" className="text-white hover:text-blue-400">Contact</Link></li>
           <li><Link href="/profile/${username}" className="text-white hover:text-blue-400">Profile</Link></li>
-          <li><Link href="/"><button className=" gap-y-6 w-full bg-gray-600 text-white p-2 rounded font-bold hover:bg-red-700">Logout</button></Link></li>
+          <li><button onClick={handleLogout} className=" gap-y-6 w-full bg-gray-600 text-white p-2 rounded font-bold hover:bg-red-700">Logout</button></li>
         </ul>
       </div>
     </nav>
