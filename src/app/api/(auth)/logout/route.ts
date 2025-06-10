@@ -72,12 +72,14 @@ export async function POST() {
     const sessionId = (await cookies()).get('sessionId')?.value;
     if (!sessionId) return NextResponse.json({ message: 'No session' });
     connectToDatabase();
-    // const userExists = await User.findOne({ sessionId });
+    // const userExists = await User.findOne({ "sessionid" : sessionId });
     const userExists = await User.updateOne(
-        { sessionId },
-        { $unset: {sessionId: '' } }
+        { "sessionid": sessionId },
+        { $unset: {sessionid: '' } }
     );
+
+    console.log(userExists);
     clearSessionCookie();
-    console.log("hello" + sessionId);
+    console.log("loggedouttttttttttttttttt" + sessionId);
    return NextResponse.json({ message: "Logged out" });
 }

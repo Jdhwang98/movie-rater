@@ -13,6 +13,7 @@ export async function setSessionCookie(sessiondId: string) {
         path: '/',
         maxAge: 60 * 60 * 24 * 7, // 1 week
     });
+
 }
 
 export async function clearSessionCookie() {

@@ -38,7 +38,7 @@ export async function POST(request: Request) {
         // })
         
         // return response
-        setSessionCookie(sessionId);
+        await setSessionCookie(sessionId);
         const response = NextResponse.json({ message: "success", username: userExists.username },
             { status: 201 },
         );
