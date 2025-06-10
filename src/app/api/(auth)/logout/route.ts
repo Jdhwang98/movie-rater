@@ -80,6 +80,11 @@ export async function POST() {
 
     console.log(userExists);
     clearSessionCookie();
+<<<<<<< Updated upstream
     console.log("loggedouttttttttttttttttt" + sessionId);
    return NextResponse.json({ message: "Logged out" });
+=======
+    console.log("hello" + sessionId);
+   return userExists;
+>>>>>>> Stashed changes
 }
