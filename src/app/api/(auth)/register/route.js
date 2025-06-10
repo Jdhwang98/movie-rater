@@ -1,4 +1,4 @@
-import User from "@/lib/modals/User";
+import User from "@/lib/modals/user";
 import connectToDatabase from "../../../../lib/db";
 import bcrypt from 'bcrypt';
 import { NextResponse } from "next/server";
@@ -10,7 +10,7 @@ export async function POST(request) {
         const { name, email, password } = await request.json() //extract input fields from request
         const userExists = await User.findOne({ email }) //find user based on email
         if (userExists) { //if user exist
-            return NextResponse.json({ error: "User already exists" })
+            return NextResponse.json({ error: "user already exists" })
         }
         //hash the password
         const hashpassword = await bcrypt.hash(password, 10)

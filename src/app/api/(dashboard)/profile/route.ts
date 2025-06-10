@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { Types } from "mongoose";
-import mongoose from "mongoose";
 import connectToDatabase from "@/lib/db";
 import User from "@/lib/modals/User";
 
@@ -22,7 +21,7 @@ export const GET = async (request: Request) => {
         const user = await User.findById(userId);
         if (!user) {
             return new NextResponse(
-                JSON.stringify({ meesage: "User not found in the database" }),
+                JSON.stringify({ meesage: "user not found in the database" }),
                 {
                     status: 400,
                 }

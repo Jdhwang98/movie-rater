@@ -14,7 +14,7 @@ export async function POST(request: Request) {
         const userExists = await User.findOne({ email }) //find user based on email
         console.log(JSON.stringify(userExists));
         if (!userExists) { //if user doesnt exist
-            return NextResponse.json({ error: "User doesnt exist" })
+            return NextResponse.json({ error: "user doesnt exist" })
         }
         //hash the password
         const checkPassword = await bcrypt.compare(password, userExists.password)
