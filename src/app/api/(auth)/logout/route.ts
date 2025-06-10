@@ -73,18 +73,12 @@ export async function POST() {
     if (!sessionId) return NextResponse.json({ message: 'No session' });
     connectToDatabase();
     // const userExists = await User.findOne({ "sessionid" : sessionId });
-    const userExists = await User.updateOne(
+    await User.updateOne(
         { "sessionid": sessionId },
         { $unset: {sessionid: '' } }
     );
 
-    console.log(userExists);
     clearSessionCookie();
-<<<<<<< Updated upstream
-    console.log("loggedouttttttttttttttttt" + sessionId);
    return NextResponse.json({ message: "Logged out" });
-=======
-    console.log("hello" + sessionId);
-   return userExists;
->>>>>>> Stashed changes
+
 }
