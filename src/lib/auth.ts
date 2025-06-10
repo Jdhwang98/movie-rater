@@ -8,7 +8,7 @@ export function generateSessionId() {
 export async function setSessionCookie(sessiondId: string) {
     (await cookies()).set('sessionId', sessiondId, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: false,
         sameSite: 'lax',
         path: '/',
         maxAge: 60 * 60 * 24 * 7, // 1 week

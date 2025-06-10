@@ -39,7 +39,7 @@ export async function POST(request: Request) {
         
         // return response
         setSessionCookie(sessionId);
-        const response = NextResponse.json({ message: 'Logged in successfully', username: userExists.username },
+        const response = NextResponse.json({ message: "success", username: userExists.username },
             { status: 201 },
         );
         return response
