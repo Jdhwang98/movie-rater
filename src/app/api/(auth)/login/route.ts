@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import { NextResponse } from "next/server";
 import { randomUUID } from 'crypto';
 import { cookies } from 'next/headers';
+import { generateSessionId, setSessionCookie } from "@/lib/auth";
 
 
 //post method because we are passing data
@@ -22,21 +23,27 @@ export async function POST(request: Request) {
         if (!checkPassword) { //if both passwords dont match
             return NextResponse.json({ error: "Wrong password", status: 404 })
         }
-        const sessionId = randomUUID();
+        const sessionId = generateSessionId();
         userExists.sessionid = sessionId;
         console.log(userExists);
         await userExists.save();
         console.log("HELLO " + sessionId);
-        const response = NextResponse.json({ message: "success" }, { status: 201 })
-        response.cookies.set('sessionid', sessionId, {
-            httpOnly: true,
-            secure: false,
-            sameSite: 'lax',
-            path: '/',
-            maxAge: 60 * 60 * 24 // 1 day
-        })
+        // const response = NextResponse.json({ message: "success" }, { status: 201 })
+        // response.cookies.set('sessionid', sessionId, {
+        //     httpOnly: true,
+        //     secure: false,
+        //     sameSite: 'lax',
+        //     path: '/',
+        //     maxAge: 60 * 60 * 24 // 1 day
+        // })
         
+        // return response
+        setSessionCookie(sessionId);
+        const response = NextResponse.json({ message: 'Logged in successfully', username: userExists.username },
+            { status: 201 },
+        );
         return response
+
     } catch (err: any) {
         return NextResponse.json({ error: err.message, status: 500 })
     }

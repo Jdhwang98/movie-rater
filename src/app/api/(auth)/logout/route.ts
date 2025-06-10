@@ -5,6 +5,7 @@ import { Types } from "mongoose";
 import { cookies } from 'next/headers';
 import { redirect } from "next/navigation";
 import clientPromise from '@/lib/db';
+import { clearSessionCookie } from "@/lib/auth";
 
 const ObjectId = require("mongoose").Types.ObjectId
 
@@ -28,41 +29,55 @@ const ObjectId = require("mongoose").Types.ObjectId
 //     }
 // }
 
-export async function POST(request: Request) {
-    const cookieStore = cookies();
+// export async function POST(request: Request) {
+//     const cookieStore = cookies();
+//     const sessionId = (await cookies()).get('sessionId')?.value;
+//    try {
+//      // check if sessionId exists
+//     if(!sessionId) {
+//         return NextResponse.json({ message: 'No active session' }, 
+//             {
+//                 status: 400,
+//             }
+//         );
+//     }
+//      // Connect to MongoDB
+//     connectToDatabase();
+//     const deleteSessionId = await User.findByIdAndDelete(
+//         new Types.ObjectId(sessionId)
+//     );
+//     if (!deleteSessionId) {
+//         return new NextResponse(
+//             JSON.stringify({ message: "Session not found" }),
+//              {status: 400 }
+//         );
+//     }
+//     (await cookieStore).set('sessiondId','',{
+//         httpOnly:true,
+//         path:'/',
+//         maxAge: 0,
+//     });
+//     return new NextResponse(
+//         JSON.stringify({ message: "Session deleted!", user: deleteSessionId }),
+//         { status: 200 },
+//     );
+//    } catch(error: any) {
+//         return new NextResponse("Error in deleting session for user" + error.message, {
+//             status: 500,
+//         });
+//    }
+// };
+
+export async function POST() {
     const sessionId = (await cookies()).get('sessionId')?.value;
-   try {
-     // check if sessionId exists
-    if(!sessionId) {
-        return NextResponse.json({ message: 'No active session' }, 
-            {
-                status: 400,
-            }
-        );
-    }
-     // Connect to MongoDB
+    if (!sessionId) return NextResponse.json({ message: 'No session' });
     connectToDatabase();
-    const deleteSessionId = await User.findByIdAndDelete(
-        new Types.ObjectId(sessionId)
+    // const userExists = await User.findOne({ sessionId });
+    const userExists = await User.updateOne(
+        { sessionId },
+        { $unset: {sessionId: '' } }
     );
-    if (!deleteSessionId) {
-        return new NextResponse(
-            JSON.stringify({ message: "Session not found" }),
-             {status: 400 }
-        );
-    }
-    (await cookieStore).set('sessiondId','',{
-        httpOnly:true,
-        path:'/',
-        maxAge: 0,
-    });
-    return new NextResponse(
-        JSON.stringify({ message: "Session deleted!", user: deleteSessionId }),
-        { status: 200 },
-    );
-   } catch(error: any) {
-        return new NextResponse("Error in deleting session for user" + error.message, {
-            status: 500,
-        });
-   }
-};
+    clearSessionCookie();
+    console.log("hello" + sessionId);
+   return NextResponse.json({ message: "Logged out" });
+}
